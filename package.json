@@ -1,7 +1,7 @@
 {
-  "name": "live-lhs",
-  "displayName": "live-lhs",
-  "description": "Extended functionality for Literate Haskell files.",
+  "name": "lhs-ext",
+  "displayName": "Literate Haskell Extended",
+  "description": "Extended functionality for Literate Haskell files in VS Code.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "live-lhs.start",
-        "title": "Live LHS: Start the Literate Haskell live view."
+        "command": "lhs-ext.start",
+        "title": "Literate Haskell: Start the Literate Haskell live view."
       }
     ],
     "notebooks": [
