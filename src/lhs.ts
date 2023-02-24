@@ -8,7 +8,7 @@ import { NotebookData, NotebookCellData, NotebookCellKind } from "vscode";
  * A literate Haskell file must be written 
  * in either code blocks or bird tracks style.
  */
-enum LiterateHaskellStyle {
+export enum LiterateHaskellStyle {
   CodeBlocks,
   BirdTracks
 }
@@ -18,7 +18,7 @@ enum LiterateHaskellStyle {
  * An extension of {@link NotebookData} that represents 
  * the notebook data of a Literate Haskell file.
  */
-interface LHSNotebookData extends NotebookData {
+export interface LHSNotebookData extends NotebookData {
   /**
    * Metadata of the Literate Haskell notebook.
    */
@@ -244,7 +244,7 @@ async function parseBirdTracks(content: string): Promise<NotebookCellData[]> {
  * 
  * @param content The content to be parsed
  */
-async function parse(content: string): Promise<LHSNotebookData> {
+export async function parse(content: string): Promise<LHSNotebookData> {
   return identifyStyle(content).then(style => {
     let cells: Promise<NotebookCellData[]>;
 
@@ -270,6 +270,7 @@ async function parse(content: string): Promise<LHSNotebookData> {
   }).catch(err => Promise.reject(err));
 }
 
+
 const md = ["#", ">"];
 
 /**
@@ -277,7 +278,7 @@ const md = ["#", ">"];
  * when written to Literate Haskell files.
  * 
  * This function is intended to be used when 
- * serializing a Markdown cell to a Literate Haskell file.
+ * converting a Markdown cell to a Literate Haskell file.
  * 
  * @param text The Markdown text to be fixed
  * @returns A fixed version of the Markdown text that was passed
@@ -343,7 +344,7 @@ async function stringifyBirdTracks(cells: NotebookCellData[]): Promise<string> {
  * 
  * @param data The {@link LHSNotebookData} to be serialized
  */
-async function stringify(data: LHSNotebookData): Promise<string> {
+export async function stringify(data: LHSNotebookData): Promise<string> {
   switch (data.metadata.style) {
     case LiterateHaskellStyle.BirdTracks:
       return stringifyBirdTracks(data.cells);
@@ -355,5 +356,15 @@ async function stringify(data: LHSNotebookData): Promise<string> {
 }
 
 
-export default { parse: parse, stringify: stringify };
-export { LHSNotebookData };
+/**
+ * Converts the content of a Literate Haskell file from 
+ * one style to another
+ * 
+ * @param toStyle The style to be converted to
+ */
+export async function convertStyle(content: string, toStyle: LiterateHaskellStyle): Promise<string> {
+  return parse(content).then(data => {
+    data.metadata.style = toStyle;
+    return stringify(data);
+  }).catch(Promise.reject);
+}

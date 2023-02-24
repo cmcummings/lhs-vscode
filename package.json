@@ -6,29 +6,39 @@
   "engines": {
     "vscode": "^1.75.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Snippets", "Notebooks"],
   "activationEvents": [
-    
+
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "lhs-ext.start",
-        "title": "Literate Haskell: Start the Literate Haskell live view."
+        "command": "lhs-ext.convertToBirdTracks",
+        "title": "Literate Haskell: Convert to Bird Tracks style.",
+        "when": "editorLangId == literate haskell"
+      },
+      {
+        "command": "lhs-ext.convertToCodeBlocks",
+        "title": "Literate Haskell: Convert to Code Blocks style.",
+        "when": "editorLangId == literate haskell"
       }
     ],
     "notebooks": [
       {
         "type": "lhs-notebook",
-        "displayName": "lhs-notebook",
+        "displayName": "Literate Haskell Notebook",
         "selector": [
           {
             "filenamePattern": "*.lhs"
           }
         ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "literate haskell",
+        "path": "snippets/lhs-snippets.json"
       }
     ]
   },

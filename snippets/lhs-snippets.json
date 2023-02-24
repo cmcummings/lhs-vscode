@@ -1,0 +1,7 @@
+{
+  "Code Block": {
+    "prefix": ["\\code"],
+    "body": ["\\begin{code}", "\t$0", "\\end{code}"],
+    "description": "A code block."
+  }
+}

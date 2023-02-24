@@ -1,11 +1,15 @@
 import { TextDecoder, TextEncoder } from "util";
 import * as vscode from "vscode";
-import LHS, { LHSNotebookData } from "./lhs";
+import { LHSNotebookData, parse, stringify } from "./lhs";
 
+/**
+ * Provides methods for converting to and from 
+ * Literate Haskell files and Notebooks 
+ */
 class LHSSerializer implements vscode.NotebookSerializer {
   /**
-   * Converts an .lhs file's contents to {@link LHSNotebookData}
-   * for use by the VSCode Notebook.
+   * Converts an Literate Haskell file's contents 
+   * to {@link LHSNotebookData} for use by the Notebook.
    */
   async deserializeNotebook(
     content: Uint8Array,
@@ -14,28 +18,28 @@ class LHSSerializer implements vscode.NotebookSerializer {
     const contents = new TextDecoder().decode(content);
 
     // Parse content
-    return LHS.parse(contents).then(
+    return parse(contents).then(
       data => data
     ).catch(err => {
         vscode.window.showErrorMessage(err);
-        return Promise.reject("Failed to open .lhs file as notebook: " + err);
+        return Promise.reject("Failed to open Literate Haskell file as notebook: " + err);
     });
   }
 
   /**
    * Converts {@link LHSNotebookData} to a {@link Uint8Array}
-   * which is written to the .lhs file. 
+   * which is written to the Literate Haskell file. 
    */
   async serializeNotebook(
     data: LHSNotebookData,
     token: vscode.CancellationToken
   ): Promise<Uint8Array> {
-    return LHS.stringify(data).then((content => {
+    return stringify(data).then((content => {
       // Encode content string to Uint8Array
       return new TextEncoder().encode(content);
     })).catch(err => {
       vscode.window.showErrorMessage(err);
-      return Promise.reject("Failed to save .lhs file from notebook: " + err);
+      return Promise.reject("Failed to save Literate Haskell file from notebook: " + err);
     });
   }
 }

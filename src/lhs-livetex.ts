@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-class LHSWebView {
+export default class LHSLiveTeXView {
   private panel: vscode.WebviewPanel;
   private document?: vscode.TextDocument;
   private extContext: vscode.ExtensionContext;
@@ -73,5 +73,3 @@ class LHSWebView {
     this.panel.webview.html = "";
   }
 }
-
-export default LHSWebView;

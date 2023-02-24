@@ -2,6 +2,10 @@
 
 All notable changes to lhs-ext will be documented in this file.
 
-## lhs-ext 1.0 (2023-2-23)
+## [0.1.0] - 2023-2-24
 
-- Initial release
+### Added
+
+- Notebook support for both bird tracks and code block styles
+- Conversion between styles
+- Code block snippet
