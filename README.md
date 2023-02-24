@@ -31,9 +31,3 @@ N/A
 ## Known Issues
 
 No known issues.
-
-
-## Changelog
-
-Changelog can be found [here](CHANGELOG.md).
-

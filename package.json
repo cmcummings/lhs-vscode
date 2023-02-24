@@ -2,7 +2,11 @@
   "name": "lhs-ext",
   "displayName": "Literate Haskell Extended",
   "description": "Extended functionality for Literate Haskell files in VS Code.",
-  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmcummings/lhs-vscode.git"
+  },
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.75.0"
   },
