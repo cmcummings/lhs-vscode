@@ -21,12 +21,13 @@ This VSCode extension provides extended functionality for Literate Haskell files
 ## Installation
 
 1. Download the latest release.
-2. Execute: `code --install-extension lhs-ext-VERSION.vsix`
+2. Install via the .vsix file through one of these methods:
+   - Execute the command: `code --install-extension lhs-ext-VERSION.vsix`
+   - Alternatively, go to the Extensions tab in VS Code, and select "Install from VSIX..." from the meatball (...) menu.
 
 ## Extension Settings
 
 N/A
-
 
 ## Known Issues
 
